@@ -60,7 +60,7 @@ After creating `HomeStack` add under `NavigationContainer`.
 function App() {
   return (
     <NavigationContainer>
-        <HomeStack /> {/* <<< Add this line */}
+      <HomeStack /> {/* <<< Add this line */}
     </NavigationContainer>
   );
 }
@@ -151,7 +151,7 @@ Add tabs under the `NavigationContainer`.
 function App() {
   return (
     <NavigationContainer>
-        <Tabs /> {/* <<< Add this line */}
+      <Tabs /> {/* <<< Add this line */}
     </NavigationContainer>
   );
 }
@@ -159,3 +159,95 @@ function App() {
 
 ## Step 5: Styling your Navigation
 
+Stack styling with `screenOptions`. Open `App.js` and the following options.
+
+```js
+function HomeStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#f4511e',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}>
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="About" component={About} />
+      <Stack.Screen name="Help" component={Help} />
+    </Stack.Navigator>
+  );
+}
+```
+
+### Custom Options in Screen.
+
+Open `Home` screen and add this custom screen title.
+
+```js
+export default function HomeScreen(props) {
+  props.navigation.setOptions({ // <<< Add this line
+    title: 'My Custom Title',
+    headerStyle: { backgroundColor: '#00d2d3' },
+  });
+
+  return (
+    // Other code blocks
+}
+```
+
+### Styling BottomTabs
+
+To style your `BottomTabs`. You will use the `tabBarOptions` and `screenOptions`. Open
+
+```js
+<Tab.Navigator
+  tabBarOptions={{ // Add these lines
+    activeTintColor: '#00d2d3',
+    inactiveTintColor: 'gray',
+  }}>
+  <Tab.Screen name="Home" component={HomeStack} />
+  <Tab.Screen name="Settings" component={SettingsStack} />
+</Tab.Navigator>
+```
+
+Using Icons in BottomTabs
+
+```js
+import Ionicons from 'react-native-vector-icons/Ionicons';
+```
+
+After importing `IonIcons`. Create a `screenOptions` for add `Icon`.
+
+```js
+function AfterLogin() {
+  return (
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: '#00d2d3',
+        inactiveTintColor: 'gray',
+      }}
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === 'Home') {
+            iconName = focused ? 'home-outline' : 'home';
+          } else if (route.name === 'Settings') {
+            iconName = focused ? 'hammer-outline' : 'cog-outline';
+          }
+
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+      })}>
+      <Tab.Screen name="Home" component={HomeStack} />
+      <Tab.Screen name="Settings" component={SettingsStack} />
+    </Tab.Navigator>
+  );
+}
+```
+
+That's all, you are a Hero now!

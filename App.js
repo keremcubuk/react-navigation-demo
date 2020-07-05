@@ -4,6 +4,7 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { AuthContext } from './components/context';
 import HomeScreen from './screens/Home';
@@ -20,7 +21,16 @@ const Tab = createBottomTabNavigator();
 
 function HomeStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#f4511e',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="About" component={About} />
       <Stack.Screen name="Help" component={Help} />
@@ -49,7 +59,25 @@ function LoginStackNavigator() {
 
 function AfterLogin() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: '#00d2d3',
+        inactiveTintColor: 'gray',
+      }}
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === 'Home') {
+            iconName = focused ? 'home-outline' : 'home';
+          } else if (route.name === 'Settings') {
+            iconName = focused ? 'hammer-outline' : 'cog-outline';
+          }
+
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+      })}>
       <Tab.Screen name="Home" component={HomeStack} />
       <Tab.Screen name="Settings" component={SettingsStack} />
     </Tab.Navigator>
