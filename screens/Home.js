@@ -7,7 +7,7 @@ export default function HomeScreen(props) {
       <Text>Home Screen</Text>
 
       <Button
-        onPress={() => props.navigation.navigate('About')}
+        onPress={() => {}}
         title="Go to About"
       />
     </View>

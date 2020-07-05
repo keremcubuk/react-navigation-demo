@@ -10,6 +10,10 @@ export default function About(props) {
         onPress={() => props.navigation.navigate('Help')}
         title="Go to Help"
       />
+      <Button
+        onPress={() => {}}
+        title="Back to Home"
+      />
     </View>
   );
 }
