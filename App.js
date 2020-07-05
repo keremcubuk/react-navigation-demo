@@ -33,6 +33,7 @@ function SettingsStack() {
     <Stack.Navigator>
       <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="Password" component={Password} />
+      <Stack.Screen name="Notifications" component={Notifications} />
     </Stack.Navigator>
   );
 }
@@ -51,7 +52,6 @@ function AfterLogin() {
     <Tab.Navigator>
       <Tab.Screen name="Home" component={HomeStack} />
       <Tab.Screen name="Settings" component={SettingsStack} />
-      <Tab.Screen name="Notifications" component={Notifications} />
     </Tab.Navigator>
   );
 }

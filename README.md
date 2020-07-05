@@ -87,3 +87,53 @@ function App() {
 />
 ```
 
+## Step 4: Create Tab Navigation
+
+```js
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import Settings from './screens/Settings';
+import Password from './screens/Password';
+import Notifications from './screens/Notifications';
+
+const Tab = createBottomTabNavigator();
+```
+
+After imports create a new stack.
+ 
+```js
+function SettingsStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="Password" component={Password} />
+      <Stack.Screen name="Notifications" component={Notifications} />
+    </Stack.Navigator>
+  );
+}
+```
+
+Create tabs now and import
+
+```js
+function Tabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeStack} />
+      <Tab.Screen name="Settings" component={SettingsStack} />
+    </Tab.Navigator>
+  );
+}
+```
+
+Add tabs under the `NavigationContainer`.
+
+```js
+function App() {
+  return (
+    <NavigationContainer>
+        <Tabs /> {/* <<< Add this line */}
+    </NavigationContainer>
+  );
+}
+```
