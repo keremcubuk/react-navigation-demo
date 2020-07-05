@@ -87,7 +87,26 @@ function App() {
 />
 ```
 
-## Step 4: Create Tab Navigation
+## Step 4: Passing Props between Screens
+
+Firstly, pass your props from `Home` screen. 
+
+```js
+<Button
+    onPress={() => props.navigation.navigate('About', { username: 'Kerem' })}
+    title="Go to About"
+/>
+```
+
+To read the data from navigation.
+
+Open `About` screen. And read data from props.
+
+```js
+<Text>{props.route.params.username}</Text>
+```
+
+## Step 5: Create Tab Navigation
 
 ```js
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -137,3 +156,6 @@ function App() {
   );
 }
 ```
+
+## Step 5: Styling your Navigation
+
